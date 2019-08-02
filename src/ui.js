@@ -32,6 +32,31 @@ class UI {
 
         this.post.html(output);
     }
+
+    showAlert(message, className) {
+        this.clearFields();
+
+        // Insert alert div
+        $(`<div class="${className}">${message}</div>`).insertBefore('#posts');
+   
+        // Timeout
+        setTimeout(() => {
+            this.clearAlert()
+        }, 3000); 
+    }
+
+    clearAlert(){
+        const currentAlert = $('.alert');
+
+        if(currentAlert) {
+            currentAlert.remove();
+        }
+    }
+
+    clearFields() {
+        this.titleInput.val('');
+        this.bodyInput.val('');
+    }
 }
 
 export const ui = new UI();
