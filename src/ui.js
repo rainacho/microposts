@@ -20,10 +20,10 @@ class UI {
                         <h4 class="card-title">${post.title}</h4>
                         <p class="card-text">${post.body}</p>
                         <a href="#" class="edit card-link" data-id="${post.id}">
-                            <i class="fa fa-pencil"></i>
+                            <i class="edite-item fa fa-pencil"></i>
                         </a>
                         <a href="#" class="delete card-link" data-id="${post.id}">
-                            <i class="fa fa-remove"></i>
+                            <i class="delete-item fa fa-remove"></i>
                         </a>
                     </div>
                 </div>
@@ -34,7 +34,6 @@ class UI {
     }
 
     showAlert(message, className) {
-        this.clearFields();
 
         // Insert alert div
         $(`<div class="${className}">${message}</div>`).insertBefore('#posts');

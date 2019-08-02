@@ -11,6 +11,9 @@ $(document).ready(function(){
     // Listen for add post
     ui.postSubmit.on('click', submitPost);
 
+    // Listen for delete post
+    ui.post.on('click', deletePost);
+
     // Get Posts
     function getPosts() {
         http.get('http://localhost:3000/posts')
@@ -19,7 +22,7 @@ $(document).ready(function(){
     }
 
     // Submit Post
-    function submitPost(){
+    function submitPost() {
         const title = ui.titleInput.val(),
               body = ui.bodyInput.val();
 
@@ -32,11 +35,29 @@ $(document).ready(function(){
         http.post('http://localhost:3000/posts', data)
             .then(data => {
                 ui.showAlert('Post added', 'alert alert-success');
-                //ui.clearFields();
+                ui.clearFields();
                 getPosts();
             })
             .catch(err => console.log(err));  
 
+    }
+
+    // Submit Delete
+    function deletePost(e) {
+        e.preventDefault();
+
+        if($(e.target).hasClass('delete-item')){
+           
+            const id = $(e.target).parent().attr('data-id');
+            if(confirm('Are you sure?')){
+                http.delete(`http://localhost:3000/posts/${id}`)
+                .then(data => {
+                    ui.showAlert('Post Removed', 'alert alert-success');
+                    getPosts();
+                })
+                .catch(err => console.log(err));
+            }
+        }
     }
 });
 
