@@ -1,3 +1,4 @@
+import './app.scss';
 import $ from 'jquery';
 import { http } from './http';
 import { ui } from './ui';
